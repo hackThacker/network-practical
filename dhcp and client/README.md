@@ -34,7 +34,11 @@ ip address 192.168.1.1 255.255.255.0
 no shutdown
 end
 write
+
+**Don’t be remembered notes you take, but by the labs you practice and the work you do. True mastery comes from hands-on experience.**
 ```
+
+
 
 ### 2. Configuring the DHCP Server
 
