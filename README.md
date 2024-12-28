@@ -1,8 +1,17 @@
----
+
 
 # Network Practical
 
 Welcome to the Network Practical section. This guide provides practical exercises and resources for networking.
+
+## Networking projects
+1. **Simple Networking:** [View Documentation](https://github.com/hackThacker/network-practical/tree/main/1%20simple%20networking) | [View Images](https://github.com/hackThacker/network-practical/blob/main/1%20simple%20networking/1%20simple%20Networking.png) | [Download](https://github.com/hackThacker/network-practical/raw/refs/heads/main/1%20simple%20networking/1%20simple%20Netwoking.pkt)
+2.  **Small Office/Home Office (SOHO):** [View Documentation](https://github.com/hackThacker/network-practical/tree/main/2%20Small%20Office%20Home%20Office%20SOHO%20Network%20Design) | [View Images](https://github.com/hackThacker/network-practical/blob/main/2%20Small%20Office%20Home%20Office%20SOHO%20Network%20Design/2%20Small%20Office%20Home%20Office%20SOHO%20Network%20Design.jpg) | [Download](https://github.com/hackThacker/network-practical/raw/refs/heads/main/2%20Small%20Office%20Home%20Office%20SOHO%20Network%20Design/2%20Small%20Office%20Home%20Office%20SOHO%20Network%20Design.pkt)
+
+
+
+
+
 
 ## Network Menu 🧰
 
