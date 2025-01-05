@@ -241,5 +241,3 @@ do sh start
 ```
 
 --- 
-
-This should give you an easy-to-read format for your configurations. Let me know if you need any changes!
