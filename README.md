@@ -9,7 +9,7 @@ Welcome to the Network Practical section. This guide provides practical exercise
 2.  **Small Office/Home Office (SOHO):** [View Documentation](https://github.com/hackThacker/network-practical/tree/main/2%20Small%20Office%20Home%20Office%20SOHO%20Network%20Design) | [View Images](https://github.com/hackThacker/network-practical/blob/main/2%20Small%20Office%20Home%20Office%20SOHO%20Network%20Design/2%20Small%20Office%20Home%20Office%20SOHO%20Network%20Design.jpg) | [Download](https://github.com/hackThacker/network-practical/raw/refs/heads/main/2%20Small%20Office%20Home%20Office%20SOHO%20Network%20Design/2%20Small%20Office%20Home%20Office%20SOHO%20Network%20Design.pkt)
 3.  **Hotel Management Networking:** [View Documentation](https://github.com/hackThacker/network-practical/tree/main/3%20Hotel%20Management%20Network%20Design) | [View Images](https://github.com/hackThacker/network-practical/blob/main/3%20Hotel%20Management%20Network%20Design/3%20%20Hotel%20Management%20Network%20Design.png) | [Download](https://github.com/hackThacker/network-practical/raw/refs/heads/main/3%20Hotel%20Management%20Network%20Design/3%20%20Hotel%20Management%20Network%20Design.pkt)
 
-
+4.  **Campus Networking Design :** [View Documentation](https://github.com/hackThacker/network-practical/tree/main/4%20Campus%20Network%20Design) | [View Images](https://github.com/hackThacker/network-practical/blob/main/4%20Campus%20Network%20Design/campus%20network%20design%20.gif) | [Download](https://github.com/hackThacker/network-practical/raw/refs/heads/main/4%20Campus%20Network%20Design/4%20Campus%20network%20design.pkt)
 
 
 
