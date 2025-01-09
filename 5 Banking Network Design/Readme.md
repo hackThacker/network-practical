@@ -119,6 +119,10 @@ The subnet mask `255.255.255.0` in binary is:
 
 The first 24 bits (the "1"s) are for the network part, and the last 8 bits (the "0"s) are for the host part of the address.
 
+  
+- **(The "1"s)** represent `on bits`, which are used to identify the **network** or **subnet** portion of the address.
+- **(The "0"s)** represent `off bits`, which are used to identify the **host** portion of the address.
+
 This subnet mask allows for only one network address 
 - 1 Network Address (the first address)
 - 1 Broadcast Address (the last address in the range)
@@ -243,4 +247,4 @@ If you need any further assistance, feel free to ask. I'm here to help! ✨
 | 14  | 10.10.10.52     | 255.255.255.252  | 10.10.10.37 to 10.10.10.38 | 10.10.10.39       |
 
 
-
+---
