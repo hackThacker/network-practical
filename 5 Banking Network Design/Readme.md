@@ -4,13 +4,32 @@
 Nebula Financial Services is a UK-owned company that deals with Banking and Insurance. The company is intending to expand its services across the Asian continent, having the first branch located in Hetauda, Nepal. The company has secured a four-story building to operate within the kathmandu capital city. Therefore, the company would like to allow sourcing the knowledge from a group of final-year students from the local university to design and implement their company network. Assume you are among the students to take over this role. Carefully read down the requirements, then model the design and implement the network based on the company's needs. Each floor has departments as provided in the table below.
 
 - [Task](#requirements)
+- [Configuration ](#config-steps)
 - [Calculating Subnetting Tables ](#subnetting-calculation)
 - [IP Table Addressing](#ip-addressing)
-  - [First Floor](#first-floor-ip)
-  - [Second Floor](#second-floor-ip)
-  - [Third Floor](#third-floor-ip)
-  - [Fourth Floor](#fourth-floor-ip)
+  1. [First Floor](#first-floor-ip)
+  2. [Second Floor](#second-floor-ip)
+  3. [Third Floor](#third-floor-ip)
+  4. [Fourth Floor](#fourth-floor-ip)
 - [Router & l3 Switch](#between-the-router-and-layer-3-switch)
+- [Commands](#commands)
+  - [Basic Configuration of the Devices](#basic-configuration-of-the-devices)
+    1. [Access Layer (Switch Commands)](#access-layer-switch-commands)
+    2. [Distribution Layer 3 (Switch Commands)](#distribution-layer-3-switch-commands)
+  - [Core Layer (Router Commands)](#core-layer-router-commands)
+  - [VLAN Access and Trunk, Switchport Security](#vlan-access-and-trunk--switchport-security)
+    - [Trunk Port](#trunk-port)
+    - [Access Port](#access-port)
+    - [Switch Port Security](#switch-port-security)
+    - [L3 Switch Port Trunk](#l3-switch-port-trunk)
+  - [Assigning IP to L3 Switch](#assigning-ip-to-l3-switch)
+  - [Router IP Assigning](#router-ip-assigning)
+  - [OSPF on the Routers and L3 Switches](#ospf-on-the-routers-and-l3-switches)
+  - [OSPF L3 Switch](#ospf-l3-switch)
+  - [Inter-VLAN Routing on the L3 Switches plus IP DHCP Helper Addresses](#inter-vlan-routing-on-the-l3-switches-plus-ip-dhcp-helper-addresses)
+  - [Server DHCP Commands](#server-dhcp-commands)
+
+
 
 
 ### First Floor
@@ -92,6 +111,21 @@ Nebula Financial Services is a UK-owned company that deals with Banking and Insu
    - Do the devices in different VLANs communicate
 
 10. Document the project design and implementation
+
+
+### CONFIG STEPS 
+
+1. Basic settings to all devices plus ssh on the routers and l3 switches.
+2. VLANs assignment plus all access and trunk ports.
+3. Switchport security to all l2 switches.
+4. Subnetting and IP addressing
+5. OSPF on the routers and l3 switches.
+6. Static IP address to serverRoom devices.
+7. DHCP server device configuratiuons.
+8. Inter-VLAN routing on the l3 switches plus ip dhcp helper addresses.
+9. Wireless network configurations.
+10. Verifying and testing configurations.
+
 
 ---
 
@@ -224,8 +258,9 @@ If you need any further assistance, feel free to ask. I'm here to help! ✨
 ## Between the Router and Layer 3 Switch
 
 
-##### Base Network Address: `10.10.10.0`
-##### Base Subnet Address: `255.255.255.252 /30`
+##### Base Network Address: 10.10.10.00`
+
+##### Base Subnet Address: 255.255.255.252 /300`
 
 
 
@@ -248,3 +283,299 @@ If you need any further assistance, feel free to ask. I'm here to help! ✨
 
 
 ---
+
+# commands
+
+
+#### Configure the basic configuration of the devices 
+
+##### Access layer  switch commands
+```
+en
+conf t
+hostname floor1-magement-sw
+banner motd  # This is floor 1 management switch#
+```
+```
+line console 0
+password cisco
+login
+exit
+```
+```
+
+line vty 0 15
+password cisco
+login
+exit
+```
+```
+
+no ip domain-lookup 
+enable password cisco
+service password-encryption
+
+do wr
+```
+##### distribution layer 3 switch commands
+```
+en
+conf t
+hostname floor2-l3-sw
+banner motd  # This is floor 2 layer 3 switch#
+```
+```
+line console 0
+password cisco
+login
+exit
+```
+```
+ip domain-name hackthacker.com
+username hackthacker password hackthacker
+crypto key generate rsa
+1024
+
+```
+```
+line vty 0 15
+login local
+transport input ssh
+exit
+```
+```
+no ip domain-lookup 
+enable password cisco
+service password-encryption
+do wr
+```
+
+#### Core  Router commands
+```
+en
+conf t
+hostname Router1-floor1
+banner motd  # This is Router1 floor 1#
+```
+```
+line console 0
+password cisco
+login
+exit
+```
+```
+ip domain-name hackthacker.com
+username hackthacker password hackthacker
+crypto key generate rsa
+1024
+```
+```
+line vty 0 15
+login local
+transport input ssh
+exit
+```
+```
+no ip domain-lookup 
+enable password cisco
+service password-encryption
+do wr
+```
+
+#### vlan access and trunk , switchport security
+
+##### trunk port
+```
+en
+conf t
+int range fa0/1-2
+switchport mode trunk
+ex
+```
+##### access port
+```
+vlan 100
+name management
+exit
+```
+```
+int range fa0/3-24
+switchport mode access 
+switchport access vlan 100
+```
+##### switch port security
+```
+switchport port-security maximum 2
+switchport port-security mac-address sticky
+switchport port-security violation shutdown
+do wr
+exit
+```
+##### l3 switch port trunk
+```
+int range gigabitEthernet 1/0/3-8
+switchport mode trunk
+ex
+```
+
+#### assigning ip to l3 switch
+```
+int range gigabitEthernet 1/0/1-2
+no switchport
+exit
+```
+```
+int gig1/0/1
+ip address 10.10.10.1 255.255.255.252
+
+int gig1/0/2
+ip address 10.10.10.9 255.255.255.252
+do wr
+```
+
+#### Router Ip assigning 
+```
+int serial 0/1/0
+ip address 10.10.10.33 255.255.255.252
+```
+
+#### OSPF on the routers and l3 switches
+
+##### floor1 router 
+```
+conf t
+router ospf 10
+network 10.10.10.0 0.0.0.3 area 0
+network 10.10.10.4  0.0.0.3  area 0
+network 10.10.10.16  0.0.0.3 area 0
+network 10.10.10.28  0.0.0.3 area 0
+network 10.10.10.32  0.0.0.3 area 0
+ex
+do wr
+```
+
+##### floor 3 router
+```
+conf t
+router ospf 10
+network 10.10.10.32  0.0.0.3  area 0
+network 10.10.10.40  0.0.0.3  area 0
+network 10.10.10.20  0.0.0.3 area 0
+network 10.10.10.48  0.0.0.3 area 0
+network 10.10.10.36  0.0.0.3 area 0
+ex
+do wr
+```
+
+##### floor 2 router 
+```
+conf t
+router ospf 10
+network 10.10.10.16  0.0.0.3  area 0
+network 10.10.10.8  0.0.0.3  area 0
+network 10.10.10.24  0.0.0.3 area 0
+network 10.10.10.12  0.0.0.3 area 0
+network 10.10.10.20  0.0.0.3 area 0
+ex
+do wr
+```
+
+
+##### floor 4 router
+```
+conf t
+router ospf 10
+network 10.10.10.24  0.0.0.3  area 0
+network 10.10.10.28  0.0.0.3  area 0
+network 10.10.10.36  0.0.0.3 area 0
+network 10.10.10.44  0.0.0.3 area 0
+network 10.10.10.52  0.0.0.3 area 0
+ex
+do wr
+```
+
+#### OSPF L3 switch
+```
+conf t
+ip routing
+router ospf 10
+network 10.10.10.0  0.0.0.3  area 0
+network 10.10.10.8  0.0.0.3  area 0
+```
+```
+network 192.168.10.0  0.0.0.63  area 0
+network 192.168.10.64  0.0.0.63  area 0
+network 192.168.10.128  0.0.0.63  area 0
+network 192.168.10.192  0.0.0.63  area 0
+network 192.168.11.0  0.0.0.63  area 0
+network 192.168.11.64  0.0.0.63  area 0
+do wr
+```
+
+
+#### Inter-VLAN routing on the l3 switches + ip dhcp helper addresses
+
+##### l3 switch commands
+```
+conf t
+vlan 300
+vlan 310
+vlan 320
+vlan 400
+vlan 410
+vlan 420
+```
+```
+int vlan 300
+no shutdown
+ip add 192.168.11.129 255.255.255.192
+ip helper-address 192.168.12.196
+exit
+
+
+int vlan 310
+no shutdown
+ip add 192.168.11.193 255.255.255.192
+ip helper-address 192.168.12.196
+exit
+
+int vlan 320
+no shutdown
+ip add 192.168.12.1 255.255.255.192
+ip helper-address 192.168.12.196
+exit
+
+
+int vlan 400
+no shutdown
+ip add 192.168.12.65 255.255.255.192
+ip helper-address 192.168.12.196
+exit
+
+int vlan 410
+no shutdown
+ip add 192.168.12.129 255.255.255.192
+ip helper-address 192.168.12.196
+exit
+
+int vlan 420
+no shutdown
+ip add 192.168.12.193 255.255.255.192
+exit
+do wr
+```
+
+
+#### server DHCP commands
+```
+enable
+configure terminal
+ip dhcp pool MyPool
+network 192.168.1.0 255.255.255.0
+default-router 192.168.1.1
+dns-server 8.8.8.8
+address 192.168.1.10 192.168.1.50
+max-lease 50
+exit
+show ip dhcp pool
+```
