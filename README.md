@@ -8,7 +8,7 @@
 [![Forks](https://img.shields.io/github/forks/hackThacker/network-practical?style=flat-square)](https://github.com/hackThacker/network-practical/network/members)
 [![Issues](https://img.shields.io/github/issues/hackThacker/network-practical?style=flat-square)](https://github.com/hackThacker/network-practical/issues)
 
-[What is This](#-what-is-this) • [Why This Repo](#-why-this-repo) • [Topics Covered](#-topics-covered) • [Networking Projects](#-networking-projects) • [Who is This For](#-who-is-this-for) • [Repo Stats](#-repo-stats) • [Support](#-support)
+[What is This](#-what-is-this) • [Why This Repo](#-why-this-repo) • [Topics Covered](#-topics-covered) • [Networking Projects](#-networking-projects) • [Who is This For](#-who-is-this-for) • [Contribute](#-contributing) • [Repo Stats](#-repo-stats) • [Support](#-support)
 
 </div>
 
@@ -109,6 +109,14 @@
 ✅ Instructors needing ready-made lab topologies
 ✅ Anyone preparing for a network engineering or sysadmin role
 ```
+---
+
+## 🤲 Contributing
+
+Want to add a new lab, fix a config, or improve documentation?
+Read the full contribution guide before submitting:
+
+👉 [CONTRIBUTING.md](./CONTRIBUTING.md)
 
 ---
 
