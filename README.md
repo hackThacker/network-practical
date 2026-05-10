@@ -4,6 +4,7 @@
 
 **Hands-on Cisco Packet Tracer labs covering real-world network design, routing protocols, and enterprise infrastructure.**
 
+[![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 [![Stars](https://img.shields.io/github/stars/hackThacker/network-practical?style=flat-square)](https://github.com/hackThacker/network-practical/stargazers)
 [![Forks](https://img.shields.io/github/forks/hackThacker/network-practical?style=flat-square)](https://github.com/hackThacker/network-practical/network/members)
 [![Issues](https://img.shields.io/github/issues/hackThacker/network-practical?style=flat-square)](https://github.com/hackThacker/network-practical/issues)
